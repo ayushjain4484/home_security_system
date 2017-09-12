@@ -17,7 +17,7 @@ def emailpir():
     mail = smtplib.SMTP('smtp.gmail.com',587)
     mail.ehlo()
     mail.starttls()
-    mail.login('ayushforibm@gmail.com','A1b2c3d4#')
+    mail.login('homealertsss@gmail.com','A1b2c3d4#')
     mail.sendmail('HomeSecurity','ayushjain4484@gmail.com',content)
     mail.close()
 
@@ -30,6 +30,11 @@ def emailmq2():
     mail.sendmail('HomeSecurity','ayushjain4484@gmail.com',content)
     mail.close()
 
+def alert():
+    GPIO.output(13,True)
+    time.sleep(2)
+    GPIO.output(13,False)
+
 #establishing Database Connection
 conn= MySQLdb.connect("localhost","root","raspberry","testwebsite")
 c = conn.cursor()
@@ -41,15 +46,17 @@ while True:
     m=GPIO.input(11)
     p=GPIO.input(7)
     if m==1:
-        c.executemany(sqlmq,"a")
+        c.executemany(sqlmq,"1")
         conn.commit()
-        print "intruder Detected"
+        print "Smoke Detected"
+        alert()#LED/BUZZER
         emailmq2()#sending email
         time.sleep(3)
     if p==1:
-        c.executemany(sqlpir,"a")
+        c.executemany(sqlpir,"1")
         conn.commit()
         print "intruder Detected"
+        alert()#LED/BUZZER
         emailpir()#sending email
         time.sleep(3)
 
