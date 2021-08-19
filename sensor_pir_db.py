@@ -6,7 +6,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(7,GPIO.IN) 
 #GPIO.setup(11,GPIO.OUT)
 
-conn= MySQLdb.connect("localhost","root","raspberry","testwebsite")
+conn= MySQLdb.connect("localhost","user","password","database")
 c = conn.cursor()
 sql="insert into pir_tab(ch)values(%s)"
 
