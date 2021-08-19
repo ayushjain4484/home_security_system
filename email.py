@@ -1,10 +1,9 @@
 import smtplib
-def emailpir():
-    content = 'Someone is trying to enter your house'
+def email(content="Mail text"):
     mail = smtplib.SMTP('smtp.gmail.com',587)
     mail.ehlo()
     mail.starttls()
-    mail.login('ayushforibm@gmail.com','A1b2c3d4#')
-    mail.sendmail('HomeSecurity','ayushjain4484@gmail.com',content)
+    mail.login('user@gmail.com','password#')
+    mail.sendmail('HomeSecurity','user@gmail.com',content)
     mail.close()
-emailpir()
+email()
